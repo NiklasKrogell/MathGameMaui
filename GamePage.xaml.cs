@@ -22,14 +22,6 @@ namespace MathGameMaui
 
         private void CreateNewQuestion()
         {
-            var gameOperand = GameType switch
-            {
-                "Addition" => "+",
-                "Subtraction" => "-",
-                "Multiplication" => "*",
-                "Division" => "/",
-                _ => ""
-            };
 
             var random = new Random();
 
@@ -45,7 +37,7 @@ namespace MathGameMaui
                 }
             }
 
-            QuestionLabel.Text = $"{firstNumber} {gameOperand} {secondNumber}";
+            QuestionLabel.Text = $"{firstNumber} {GameType} {secondNumber}";
         }
 
         public void OnAnswerSubmitted(object sender, EventArgs e)
@@ -55,16 +47,16 @@ namespace MathGameMaui
 
             switch (GameType)
             {
-                case "Addition":
+                case "+":
                     isCorrect = answer == firstNumber + secondNumber;
                     break;
-                case "Subtraction":
+                case "-":
                     isCorrect = answer == firstNumber - secondNumber;
                     break;
-                case "Multiplication":
+                case "x":
                     isCorrect = answer == firstNumber * secondNumber;
                     break;
-                case "Division":
+                case "/":
                     isCorrect = answer == firstNumber / secondNumber;
                     break;
             }
@@ -91,10 +83,10 @@ namespace MathGameMaui
         {
             GameOperation gameOperation = GameType switch
             {
-                "Addition" => GameOperation.Addition,
-                "Subtraction" => GameOperation.Subtraction,
-                "Multiplication" => GameOperation.Multiplication,
-                "Division" => GameOperation.Division,
+                "+" => GameOperation.Addition,
+                "-" => GameOperation.Subtraction,
+                "x" => GameOperation.Multiplication,
+                "/" => GameOperation.Division,
             };
 
             QuestionArea.IsVisible = false;
